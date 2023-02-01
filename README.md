@@ -1,7 +1,6 @@
 <div align="center">
 
-# asdf-pipectl [![Build](https://github.com/funera1/asdf-pipectl/actions/workflows/build.yml/badge.svg)](https://github.com/funera1/asdf-pipectl/actions/workflows/build.yml) [![Lint](https://github.com/funera1/asdf-pipectl/actions/workflows/lint.yml/badge.svg)](https://github.com/funera1/asdf-pipectl/actions/workflows/lint.yml)
-
+# asdf-pipectl [![Build](https://github.com/pipe-cd/asdf-pipectl/actions/workflows/build.yml/badge.svg)](https://github.com/pipe-cd//asdf-pipectl/actions/workflows/build.yml) [![Lint](https://github.com/pipe-cd/asdf-pipectl/actions/workflows/lint.yml/badge.svg)](https://github.com/pipe-cd/asdf-pipectl/actions/workflows/lint.yml)
 
 [pipectl](https://github.com/pipe-cd/pipecd) plugin for the [asdf version manager](https://asdf-vm.com).
 
@@ -24,16 +23,14 @@
 # Install
 
 Plugin:
-
-```shell
+```
 asdf plugin add pipectl
 # or
-asdf plugin add pipectl https://github.com/funera1/asdf-pipectl.git
+asdf plugin add pipectl https://github.com/pipe-cd/asdf-pipectl.git
 ```
 
 pipectl:
-
-```shell
+```
 # Show all installable versions
 asdf list-all pipectl
 
@@ -47,15 +44,15 @@ asdf global pipectl latest
 pipectl --help
 ```
 
-Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
-install & manage versions.
+Please check [asdf](https://github.com/asdf-vm/asdf#readme) for more instructions on how to
+install and manage versions.
 
 # Contributing
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
-[Thanks goes to these contributors](https://github.com/funera1/asdf-pipectl/graphs/contributors)!
+[Thanks goes to these contributors](https://github.com/pipe-cd/asdf-pipectl/graphs/contributors)!
 
 # License
 
-See [LICENSE](LICENSE) © [funera1](https://github.com/funera1/)
+See [LICENSE](LICENSE) © [pipe-cd](https://github.com/pipe-cd/)
