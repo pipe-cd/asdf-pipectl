@@ -19,4 +19,5 @@ jobs:
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v1
         with:
-          command: pipectl --help
+          command: pipectl version
+          giturl: https://github.com/pipe-cd/pipecd.git
