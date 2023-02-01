@@ -15,20 +15,21 @@ release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME"
 
 # Download binary file to the download directory
 get_arch() {
-    local arch
-    arch=$(uname -m | tr '[:upper:]' '[:lower:]')
-    case ${arch} in
-        x86_64)
-            arch='amd64'
-    esac
+  local arch
+  arch=$(uname -m | tr '[:upper:]' '[:lower:]')
+  case ${arch} in
+  x86_64)
+    arch='amd64'
+    ;;
+  esac
 
-    echo "${arch}"
+  echo "${arch}"
 }
 
 get_platform() {
-    plat=$(uname | tr '[:upper:]' '[:lower:]')
+  plat=$(uname | tr '[:upper:]' '[:lower:]')
 
-    echo "${plat}"
+  echo "${plat}"
 }
 
 arch="$(get_arch)"
@@ -36,5 +37,4 @@ platform="$(get_platform)"
 download_release "$ASDF_INSTALL_VERSION" "$release_file" "$arch" "$platform"
 
 # Add executive authority to the download file
-chmod +x "$release_file"  || fail "Could not extract $release_file"
-
+chmod +x "$release_file" || fail "Could not extract $release_file"

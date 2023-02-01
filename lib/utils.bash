@@ -46,7 +46,6 @@ download_release() {
   # Adapt the release URL convention for pipectl
   url="$GH_REPO/releases/download/v${version}/pipectl_v${version}_${platform}_${arch}"
 
-
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" "$url" || fail "Could not download $url"
 }
