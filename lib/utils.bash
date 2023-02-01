@@ -5,7 +5,7 @@ set -euo pipefail
 # Ensure this is the correct GitHub homepage where releases can be downloaded for pipectl.
 GH_REPO="https://github.com/pipe-cd/pipecd"
 TOOL_NAME="pipectl"
-TOOL_TEST="pipectl version"
+TOOL_TEST="pipectl --help"
 
 fail() {
   echo -e "asdf-$TOOL_NAME: $*"
