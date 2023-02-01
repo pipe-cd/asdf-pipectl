@@ -37,34 +37,42 @@ list_all_versions() {
 }
 
 download_release() {
-  local version filename url
+  local version filename url arch platform
   version="$1"
   filename="$2"
+  arch="$3"
+  platform="$4"
 
   # TODO: Adapt the release URL convention for pipectl
-  url="$GH_REPO/archive/v${version}.tar.gz"
+  # url="$GH_REPO/archive/v${version}.tar.gz"
+  url="$GH_REPO/releases/download/v${version}/pipectl_v${version}_${platform}_${arch}"
+
 
   echo "* Downloading $TOOL_NAME release $version..."
-  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+  # curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+  curl "${curl_opts[@]}" -o "$filename" "$url" || fail "Could not download $url"
 }
 
 install_version() {
   local install_type="$1"
   local version="$2"
-  local install_path="${3%/bin}/bin"
+  local install_path="${3%/bin}"
+  echo "#######################"
+  echo "$install_path"
+  echo "#######################"
 
   if [ "$install_type" != "version" ]; then
     fail "asdf-$TOOL_NAME supports release installs only"
   fi
 
   (
-    mkdir -p "$install_path"
-    cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+    mkdir -p "$install_path/bin"
+    cp "$ASDF_DOWNLOAD_PATH/pipectl" "$install_path/bin"
 
     # TODO: Assert pipectl executable exists.
     local tool_cmd
     tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
-    test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
+    test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
 
     echo "$TOOL_NAME $version installation was successful!"
   ) || (
