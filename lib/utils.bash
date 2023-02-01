@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for pipectl.
+# Ensure this is the correct GitHub homepage where releases can be downloaded for pipectl.
 GH_REPO="https://github.com/pipe-cd/pipecd"
 TOOL_NAME="pipectl"
-TOOL_TEST="pipectl --help"
+TOOL_TEST="pipectl version"
 
 fail() {
   echo -e "asdf-$TOOL_NAME: $*"
@@ -43,13 +43,11 @@ download_release() {
   arch="$3"
   platform="$4"
 
-  # TODO: Adapt the release URL convention for pipectl
-  # url="$GH_REPO/archive/v${version}.tar.gz"
+  # Adapt the release URL convention for pipectl
   url="$GH_REPO/releases/download/v${version}/pipectl_v${version}_${platform}_${arch}"
 
 
   echo "* Downloading $TOOL_NAME release $version..."
-  # curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
   curl "${curl_opts[@]}" -o "$filename" "$url" || fail "Could not download $url"
 }
 
@@ -57,9 +55,6 @@ install_version() {
   local install_type="$1"
   local version="$2"
   local install_path="${3%/bin}"
-  echo "#######################"
-  echo "$install_path"
-  echo "#######################"
 
   if [ "$install_type" != "version" ]; then
     fail "asdf-$TOOL_NAME supports release installs only"
@@ -69,7 +64,7 @@ install_version() {
     mkdir -p "$install_path/bin"
     cp "$ASDF_DOWNLOAD_PATH/pipectl" "$install_path/bin"
 
-    # TODO: Assert pipectl executable exists.
+    # Assert pipectl executable exists.
     local tool_cmd
     tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
     test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
